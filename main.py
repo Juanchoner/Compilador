@@ -28,4 +28,10 @@ tokens = ('SUM',
 
 t_SUM = r'\+'
 t_RES = r'-'
+t_MUT = r'\*'
+t_DIV = r'/'
+t_MOD = r'//'
+t_POT = r'\**'
+t_ASG = r'='
+t_COM = r'=='
 
