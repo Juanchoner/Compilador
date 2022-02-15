@@ -34,4 +34,4 @@ t_MOD = r'//'
 t_POT = r'\**'
 t_ASG = r'='
 t_COM = r'=='
-
+t_DIF = r'!='
