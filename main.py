@@ -79,6 +79,7 @@ lexer = lex.lex()
 
 cadena = '''x = 12.34
 y = (12 + 34)
+p = 34
 '''
 
 lexer.input(cadena)
