@@ -1,8 +1,12 @@
-from .ply import lex
-from .ply import yacc
+#from .ply import lex
+#from .ply import yacc
+
+import ply.lex as lex
 
 #Lista de tokens
-tokens = ('SUM', 
+tokens = (
+        'ID',
+        'SUM', 
         'RES',
         'DIV',
         'MUT',
@@ -27,11 +31,11 @@ tokens = ('SUM',
         )
 
 t_SUM = r'\+'
-t_RES = r'-'
+t_RES = r'\-'
 t_MUT = r'\*'
 t_DIV = r'/'
 t_MOD = r'//'
-t_POT = r'\**'
+t_POT = r'\*\*'
 t_ASG = r'='
 t_COM = r'=='
 t_DIF = r'!='
@@ -45,4 +49,39 @@ t_LQA = r'\{'
 t_LQC = r'\}'
 t_CQA = r'\['
 t_CQC = r'\]'
-t_NUM = r'\d+'
+
+def t_ID(t):
+    r'[a-zA-Z_][a-zA-Z_0-9]*'
+    t.value = str(t.value)
+    return t
+
+def t_DCI(t):
+   r'\d*\.\d+'
+   t.value = float(t.value)
+   return t
+
+def t_NUM(t):
+    r'\d'
+    t.value = int(t.value)
+    return t
+
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+
+t_ignore = ' \t'
+
+def t_error(t):
+    print("Caracter erroneo: '%s'" % t.value[0])
+    t.lexer.skip(1)
+
+lexer = lex.lex()
+
+cadena = '''x = 12.34
+y = (12 + 34)
+'''
+
+lexer.input(cadena)
+
+for token in lexer:
+        print(token)
