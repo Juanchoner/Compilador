@@ -77,10 +77,12 @@ def t_error(t):
 
 lexer = lex.lex()
 
-cadena = '''x = 12.34
-y = (12 + 34)
-p = 34
-'''
+# cadena = '''xyz = 12.34
+# y = (12 + 34)
+# p = 34
+# '''
+
+cadena = input('Ingrese la cadena a analizar:\n')
 
 lexer.input(cadena)
 
