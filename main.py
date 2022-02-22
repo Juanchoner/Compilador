@@ -1,6 +1,3 @@
-#from .ply import lex
-#from .ply import yacc
-
 import ply.lex as lex
 
 #Lista de tokens
@@ -61,7 +58,7 @@ def t_DCI(t):
    return t
 
 def t_NUM(t):
-    r'\d'
+    r'\d+'
     t.value = int(t.value)
     return t
 
@@ -80,6 +77,8 @@ lexer = lex.lex()
 cadena = '''x = 12.34
 y = (12 + 34)
 p = 34
+r == 12
+x <= 10
 '''
 
 lexer.input(cadena)
