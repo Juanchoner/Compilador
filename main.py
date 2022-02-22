@@ -1,5 +1,6 @@
 import ply.lex as lex
 
+#ACTIVIDAD A2
 #Lista de tokens
 tokens = (
         'ID',
@@ -27,6 +28,7 @@ tokens = (
         'DCI'
         )
 
+#Expresiones regulares
 t_SUM = r'\+'
 t_RES = r'\-'
 t_MUT = r'\*'
@@ -72,6 +74,8 @@ def t_error(t):
     print("Caracter erroneo: '%s'" % t.value[0])
     t.lexer.skip(1)
 
+
+#Ejecucion del analizador lexico
 lexer = lex.lex()
 
 cadena = input('Ingrese cadena a evaluar: ')
