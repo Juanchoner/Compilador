@@ -83,9 +83,8 @@ def t_error(t):
 #Ejecucion del analizador lexico
 lexer = lex.lex()
 
-cadena = input('Ingrese cadena a evaluar: ')
-
-lexer.input(cadena)
-
-for token in lexer:
-        print(token)
+with open('content.txt') as file:
+    data = file.read()
+    lexer.input(data)
+    for token in lexer:
+            print(token)
