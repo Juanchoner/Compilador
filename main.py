@@ -54,6 +54,11 @@ def t_ID(t):
     t.value = str(t.value)
     return t
 
+def t_CDT(t):
+    r''' '.+' | ".+" '''
+    t.value = str(t.value)
+    return t
+
 def t_DCI(t):
    r'\d*\.\d+'
    t.value = float(t.value)
