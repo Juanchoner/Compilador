@@ -2,31 +2,54 @@ import ply.lex as lex
 
 #ACTIVIDAD A2
 #Lista de tokens
-tokens = (
-        'ID',
-        'SUM', 
-        'RES',
-        'DIV',
-        'MUT',
-        'MOD',
-        'POT',
-        'ASG',
-        'COM',
-        'DIF',
-        'MRQ',
-        'MYQ',
-        'MRI',
-        'MYI',
-        'PQA',
-        'PQC',
-        'LQA',
-        'LQC',
-        'CQA',
-        'CQC',
-        'CDT',
-        'NUM',
-        'DCI'
-        )
+
+reserved = {
+    'dict' : 'Diccionario',
+    'tuple' : 'Tupla',
+    'list' : 'Lista',
+    'if' : 'Si',
+    'else' : 'Sino',
+    'while' : 'Mientras',
+    'for' : 'Repetir',
+    'in' : 'En',
+    'return' : 'Retornar' ,
+    'try' : 'Intenta',
+    'except' : 'Toma',
+    'true' : 'Verdadero',
+    'false' : 'Falso',
+    'break' : 'Romper',
+    'print' : 'Imprimir',
+    'class' : 'Clase',
+    'def' : 'Funcion'
+
+}
+
+tokens = [
+    'ID',
+    'SUM', 
+    'RES',
+    'DIV',
+    'MUT',
+    'MOD',
+    'POT',
+    'ASG',
+    'COM',
+    'DIF',
+    'MRQ',
+    'MYQ',
+    'MRI',
+    'MYI',
+    'PQA',
+    'PQC',
+    'LQA',
+    'LQC',
+    'CQA',
+    'CQC',
+    'CDT',
+    'NUM',
+    'DCI'
+] + list(reserved.values())
+ 
 
 #Expresiones regulares
 t_SUM = r'\+'
@@ -51,7 +74,7 @@ t_CQC = r'\]'
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
-    t.value = str(t.value)
+    t.type = reserved.get(t.value,'ID')
     return t
 
 def t_CDT(t):
