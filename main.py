@@ -47,7 +47,8 @@ tokens = [
     'CQC',
     'CDT',
     'NUM',
-    'DCI'
+    'DCI',
+    'COMMENT'
 ] + list(reserved.values())
  
 
@@ -102,7 +103,9 @@ def t_error(t):
     print("Caracter erroneo: '%s'" % t.value[0])
     t.lexer.skip(1)
 
-
+def t_COMMENT(t):
+     r'\#.*'
+     pass
 #Ejecucion del analizador lexico
 lexer = lex.lex()
 
