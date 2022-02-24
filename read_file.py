@@ -1,5 +1,2 @@
-def read_text():
-    with open("content.txt", "r") as archivo:
-        data = archivo.read()
-        return data
-        
+with open('content.txt') as file:
+    print(file.read())

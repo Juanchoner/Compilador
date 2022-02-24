@@ -1,5 +1,4 @@
 import ply.lex as lex
-import read_file
 
 #ACTIVIDAD A2
 #Lista de tokens
@@ -84,10 +83,8 @@ def t_error(t):
 #Ejecucion del analizador lexico
 lexer = lex.lex()
 
-#cadena = input('Ingrese cadena a evaluar: ')
-cadena = read_file.read_text()
-
-lexer.input(cadena)
-
-for token in lexer:
-        print(token)
+with open('content.txt') as file:
+    data = file.read()
+    lexer.input(data)
+    for token in lexer:
+            print(token)
