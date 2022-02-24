@@ -1,4 +1,5 @@
 import ply.lex as lex
+import read_file
 
 #ACTIVIDAD A2
 #Lista de tokens
@@ -55,7 +56,7 @@ def t_ID(t):
     return t
 
 def t_CDT(t):
-    r''' '.+' | ".+" '''
+    r''' '.*' | ".*" '''
     t.value = str(t.value)
     return t
 
@@ -83,7 +84,8 @@ def t_error(t):
 #Ejecucion del analizador lexico
 lexer = lex.lex()
 
-cadena = input('Ingrese cadena a evaluar: ')
+#cadena = input('Ingrese cadena a evaluar: ')
+cadena = read_file.read_text()
 
 lexer.input(cadena)
 
