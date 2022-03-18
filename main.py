@@ -21,7 +21,6 @@ reserved = {
     'print' : 'Imprimir',
     'class' : 'Clase',
     'def' : 'Funcion'
-
 }
 
 tokens = [
@@ -111,3 +110,11 @@ with open('content.txt') as file:
     lexer.input(data)
     for token in lexer:
             print(token)
+
+
+'''
+Reglas sintacticas:
++ Crear un objeto
++ for
++ while
+'''
