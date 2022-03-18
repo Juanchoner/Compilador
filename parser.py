@@ -2,15 +2,15 @@ import ply.yacc as yacc
 from main import tokens 
 
 def p_expression_plus(p):
-    'expression: expression PLUS term'
+    'expression : expression PLUS term'
     p[0] = p[1] + p[3]
 
 def p_expression_minus(p):
-    'expression: expression MINUS term'
+    'expression : expression MINUS term'
     p[0] = p[1] - p[3]
     
 def p_expression_term(p):
-    'expression: expression term'
+    'expression : expression term'
     p[0] = p[1]
 
 def p_term_times(p):
@@ -36,3 +36,15 @@ def p_factor_expr(p):
  # Error rule for syntax errors
 def p_error(p):
     print("Syntax error in input!")
+
+parser = yacc.yacc()
+
+while True:
+   try:
+       s = input('calc > ')
+   except EOFError:
+       break
+   if not s: continue
+   result = parser.parse(s)
+   print(result)
+   
