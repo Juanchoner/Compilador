@@ -1,57 +1,56 @@
+'''
+Analizador léxico
+Script en pyrhon el cual analiza un texto de entrada y verifica si se encuentra 
+en el lenguaje.
+'''
 import ply.lex as lex
+import read_file
 
-#ACTIVIDAD A2
-#Lista de tokens
-
+#Palabras reservadas
 reserved = {
-    'dict' : 'Diccionario',
-    'tuple' : 'Tupla',
-    'list' : 'Lista',
-    'if' : 'Si',
-    'else' : 'Sino',
-    'while' : 'Mientras',
-    'for' : 'Repetir',
-    'in' : 'En',
-    'return' : 'Retornar' ,
-    'try' : 'Intenta',
-    'except' : 'Toma',
-    'true' : 'Verdadero',
-    'false' : 'Falso',
-    'break' : 'Romper',
-    'print' : 'Imprimir',
-    'class' : 'Clase',
-    'def' : 'Funcion'
+    'if' : 'IF',
+    'else' : 'ELSE',
+    'while' : 'WHILE',
+    'for' : 'FOR',
+    'func' : 'FUNCTION',
+    'class' : 'CLASS',
+    'true' : 'TRUE',
+    'false' : 'FALSE',
+    'return': "RETURN",
+    'this' : "THIS"
 }
 
-tokens = [
-    'ID',
-    'SUM', 
-    'RES',
-    'DIV',
-    'MUT',
-    'MOD',
-    'POT',
-    'ASG',
-    'COM',
-    'DIF',
-    'MRQ',
-    'MYQ',
-    'MRI',
-    'MYI',
-    'PQA',
-    'PQC',
-    'LQA',
-    'LQC',
-    'CQA',
-    'CQC',
-    'CDT',
-    'NUM',
-    'DCI',
-    'COMMENT'
-] + list(reserved.values())
- 
+#Lista de tokens
+tokens = (
+        'ID',
+        'SUM', 
+        'RES',
+        'DIV',
+        'MUT',
+        'MOD',
+        'POT',
+        'ASG',
+        'COM',
+        'DIF',
+        'MRQ',
+        'MYQ',
+        'MRI',
+        'MYI',
+        'PQA',
+        'PQC',
+        'LQA',
+        'LQC',
+        'CQA',
+        'CQC',
+        'CDT',
+        'NUM',
+        'DCI',
+        'CMM',
+        'DOT'
+        )
 
-#Expresiones regulares
+tokens = list(tokens) + list(reserved.values())
+ 
 t_SUM = r'\+'
 t_RES = r'\-'
 t_MUT = r'\*'
@@ -71,10 +70,13 @@ t_LQA = r'\{'
 t_LQC = r'\}'
 t_CQA = r'\['
 t_CQC = r'\]'
+t_CMM = r','
+t_DOT = r'\.'
+t_ignore_COMMENT = r'\#.*'
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
-    t.type = reserved.get(t.value,'ID')
+    t.type = reserved.get(t.value, 'ID')
     return t
 
 def t_CDT(t):
@@ -102,22 +104,13 @@ def t_error(t):
     print("Caracter erroneo: '%s'" % t.value[0])
     t.lexer.skip(1)
 
-def t_COMMENT(t):
-     r'\#.*'
-     pass
 #Ejecucion del analizador lexico
 lexer = lex.lex()
 
-with open('content.txt') as file:
-    data = file.read()
-    lexer.input(data)
+if __name__ == '__main__':
+    text = read_file.read_text()
+
+    lexer.input(text)
+
     for token in lexer:
-            print(token)
-
-
-'''
-Reglas sintacticas:
-+ Crear un objeto
-+ for
-+ while
-'''
+        print(token)
